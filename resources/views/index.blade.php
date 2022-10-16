@@ -4,7 +4,7 @@
 @section('content')
 <div class="container">
   {{-- Promotie beschrijving --}}
-  @if (count($sale))
+  @if ($sale)
     <div class="description offer-description">
       <h2 class="title">{{ $sale->title }}</h2>
       <h3 class="subtitle">{{ $sale->shortdescription }}</h3>
@@ -48,7 +48,7 @@
 </div>
 {{-- News --}}
 <div class="container news-container">
-  @if (count($news))
+  @if ($news)
     <div class="description news-description">
       <h2 class="title">{{ $news->title }}</h2>
       <p class="info">{{ $news->shortdescription }}</p>
