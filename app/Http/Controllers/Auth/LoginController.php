@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -38,17 +36,5 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
-    }
-
-    protected function authenticated($request, $user) {
-        $route = 'user.index';
-        if ($user->admin) {
-            $route = 'admin.index';
-            return redirect()->route($route);
-        } else {
-        // return redirect()->route($route);
-            return Redirect::to(Session::get('url.intended'))->with('success', ' Welcom,  ' . auth()->user()->name .'!');
-        }
-
     }
 }

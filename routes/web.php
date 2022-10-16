@@ -59,3 +59,7 @@ Route::post('/cart/delivery/order', [CheckoutController::class, 'delivery'])->na
 Route::post('/cart/make/{id}', [CheckoutController::class, 'make'])->name('cart.make')->middleware('auth');
 Route::get('/cart/orders', [CheckoutController::class, 'orders'])->name('cart.orders')->middleware('auth');
 Route::get('/cart/order/{id}', [CheckoutController::class, 'order'])->name('cart.order')->middleware('auth');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
