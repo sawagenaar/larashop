@@ -37,4 +37,16 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+    
+    // Als de gebruiker een admin is, wordt hij omgeleid naar de adminpaneel, als de gebruiker - naar de site
+    protected function authenticated($request, $user) {
+        $route = 'user.index';
+        if ($user->admin) {
+            $route = 'admin.index';
+            return redirect()->route($route);
+        } else {
+        // return redirect()->route($route);
+            return Redirect::to(Session::get('url.intended'))->with('success', ' Welcom,  ' . auth()->user()->name .'!');
+        }
+    }
 }
